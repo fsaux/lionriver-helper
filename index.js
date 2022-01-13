@@ -11,22 +11,53 @@ module.exports = function (app) {
     app.debug('Plugin started');
 
     app.registerPutHandler("vessels.self",
-      "navigation.courseGreatCircle.nextPoint.velocityMadeGood",
-      handlePutCourseData)
+      "navigation.courseGreatCircle.crossTrackError",
+      handlePutCourseData,
+      "Lionriver")
+      
+    app.registerPutHandler("vessels.self",
+      "navigation.courseGreatCircle.nextPoint.position",
+      handlePutCourseData,
+      "Lionriver")
+      
+    app.registerPutHandler("vessels.self",
+      "nnavigation.courseGreatCircle.nextPoint.distance",
+      handlePutCourseData,
+      "Lionriver")
+      
+    app.registerPutHandler("vessels.self",
+      "navigation.courseGreatCircle.nextPoint.bearingTrue",
+      handlePutCourseData,
+      "Lionriver")
 
+    app.registerPutHandler("vessels.self",
+      "navigation.courseGreatCircle.nextPoint.velocityMadeGood",
+      handlePutCourseData,
+      "Lionriver")
+
+    app.registerPutHandler("vessels.self",
+      "navigation.courseGreatCircle.bearingTrackTrue",
+      handlePutCourseData,
+      "Lionriver")
+
+    app.registerPutHandler("vessels.self",
+      "navigation.courseGreatCircle.nextPoint.estimatedTimeOfArrival",
+      handlePutCourseData,
+      "Lionriver")
+
+    app.registerPutHandler("vessels.self",
+      "performance/polarSpeedRatio",
+      handlePutCourseData,
+      "Lionriver")
+
+      //performance/polarSpeedRatio
   };
 
   const handlePutCourseData= (context, path, value, cb) => {
-
     let val= [ {path, value} ];  
-
-    app.debug(`****** Sending Delta: ******`);
-    app.debug(JSON.stringify(val));
-
     app.handleMessage(plugin.id, {updates: [ {values: val} ] });
-    return { state: 'COMPLETED', resultStatus: 200, statusCode: 200 } 
-}
-
+    return { state: 'COMPLETED', resultStatus: 200, statusCode: 200 }
+  }
 
   plugin.stop = function () {
     // Here we put logic we need when the plugin stops
