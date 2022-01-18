@@ -46,11 +46,9 @@ module.exports = function (app) {
       "Lionriver")
 
     app.registerPutHandler("vessels.self",
-      "performance/polarSpeedRatio",
+      "performance.polarSpeedRatio",
       handlePutCourseData,
       "Lionriver")
-
-      //performance/polarSpeedRatio
   };
 
   const handlePutCourseData= (context, path, value, cb) => {
