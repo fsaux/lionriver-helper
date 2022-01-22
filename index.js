@@ -21,7 +21,7 @@ module.exports = function (app) {
       "Lionriver")
       
     app.registerPutHandler("vessels.self",
-      "nnavigation.courseGreatCircle.nextPoint.distance",
+      "navigation.courseGreatCircle.nextPoint.distance",
       handlePutCourseData,
       "Lionriver")
       
